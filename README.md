@@ -7,7 +7,7 @@
 - liteDB (nosql local db)
 - Log crashes (class to show the error on output also can add to send the error to analitycs service)
 - Polly (retry api requests/timeout control)
-- Linker (downzise app file)
+- Linker (downzise app file - maui bug - not using yet)
 - App works offline (not the calculate feature)
 - validations before calculate (select an opponent/select a partner and 2 opponents/cant select same friend as partner/opponent on the game calculation)
 - CommunityToolkit.Mvvm (mvvm code generator)
