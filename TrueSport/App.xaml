@@ -1,0 +1,33 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TrueSport"
+             x:Class="TrueSport.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource Gray400}"/>
+            </Style>
+
+            <Style TargetType="BoxView" x:Key="separator">
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Gray600}"/>
+            </Style>
+
+            <!--  Control Template  -->
+            <ControlTemplate x:Key="PageLoaderControlTemplate">
+                <Grid>
+                    <ContentPresenter />
+                    <local:CustomLoader BindingContext="{Binding BindingContext, Source={RelativeSource Mode=TemplatedParent}}" IsActive="{Binding IsLoading}" />
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+

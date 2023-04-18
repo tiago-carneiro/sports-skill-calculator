@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrueSport.GamePage"
+             xmlns:local="clr-namespace:TrueSport"
+             x:DataType="local:GameViewModel"
+             x:Name="page"
+             ControlTemplate="{StaticResource PageLoaderControlTemplate}"
+             Title="GamePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Border" >
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="8"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Padding" Value="20, 10"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout Spacing="10">
+
+        <Grid HorizontalOptions="FillAndExpand" Margin="0, 30, 0, 0"
+              RadioButtonGroup.GroupName="type"
+              ColumnDefinitions="*,*"
+              RadioButtonGroup.SelectedValue="{Binding Type}">
+            <RadioButton HorizontalOptions="Center" IsChecked="True" Grid.Column="0" Content="  Single" Value="0" />
+            <RadioButton HorizontalOptions="Center" Grid.Column="1" Content="  Double" Value="1" />
+        </Grid>
+
+        <BoxView Style="{StaticResource separator}"/>
+
+        <Grid IsVisible="False" ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto" Margin="30, 0" RowSpacing="8">
+            <Label Text="Partner" FontAttributes="Bold" VerticalOptions="Center"/>
+
+            <Button Text="Select" Grid.Column="1" Command="{Binding SelectPartnerCommand}"/>
+
+            <Border Grid.ColumnSpan="2" Grid.Row="1">
+                <Label Text="{Binding Partner.Name, Mode=OneWay}"/>
+                <Border.Triggers>
+                    <DataTrigger TargetType="Border" Binding="{Binding Partner, Mode=OneWay, TargetNullValue=''}" Value="">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Border.Triggers>
+            </Border>
+
+            <Grid.Triggers>
+                <DataTrigger TargetType="Grid" Binding="{Binding Type, Mode=OneWay}" Value="1">
+                    <Setter Property="IsVisible" Value="True"/>
+                </DataTrigger>
+            </Grid.Triggers>
+        </Grid>
+
+        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto" Margin="30, 0" RowSpacing="8">
+            <Label Text="Opponent" FontAttributes="Bold" VerticalOptions="Center"/>
+
+            <Button Text="Select" Grid.Column="1" Command="{Binding SelectOpponentCommand}">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding Opponents.Count}" Value="2">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="2" BindableLayout.ItemsSource="{Binding Opponents, Mode=OneWay}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border x:DataType="local:FriendModel">
+                            <Grid ColumnDefinitions="*,Auto" HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Name, Mode=OneWay}" VerticalOptions="Center"/>
+                                <Button Grid.Column="1" Text="X" Command="{Binding BindingContext.RemoveOpponentCommand, Source={x:Reference page}}" CommandParameter="{Binding }" VerticalOptions="Center" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+        </Grid>
+
+        <Label Text="Winner" Margin="30, 30, 0, 0" FontAttributes="Bold" VerticalOptions="Center"/>
+
+        <Grid HorizontalOptions="FillAndExpand" 
+              RadioButtonGroup.GroupName="winner"
+              ColumnDefinitions="*,*"
+              RadioButtonGroup.SelectedValue="{Binding Winner}">
+            <RadioButton HorizontalOptions="Center" IsChecked="True" Grid.Column="0" Content="  Me/My Team" Value="0" />
+            <RadioButton HorizontalOptions="Center" Grid.Column="1" Content="  Opposite" Value="1" />
+        </Grid>
+
+        <Button Text="Calculate" Margin="30" Padding="0, 20" Command="{Binding CalculateSkillCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

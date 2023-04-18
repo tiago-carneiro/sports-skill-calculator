@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrueSport.DashboardPage"
+             xmlns:local="clr-namespace:TrueSport"
+             x:DataType="local:DashboardViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Padding="30" Spacing="30">
+
+        <Border HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Blue100Accent}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="8"/>
+            </Border.StrokeShape>
+            <VerticalStackLayout Margin="30" >
+
+                <Label Text="{Binding SkillRating, Mode=OneWay}" FontSize="28" />
+                <Label Text="Skill" FontSize="16"/>
+
+            </VerticalStackLayout>
+        </Border>
+
+        <Button Padding="0, 20" Command="{Binding CalculateSkillCommand}" FontSize="20" Text="Calculate Skills"/>
+
+    </VerticalStackLayout>
+</ContentPage>
+
