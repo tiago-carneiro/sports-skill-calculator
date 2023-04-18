@@ -10,6 +10,7 @@
 - Linker (downzise app file)
 - App works offline (not the calculate feature)
 - validations before calculate (select an opponent/select a partner and 2 opponents/cant select same friend as partner/opponent on the game calculation)
+- CommunityToolkit.Mvvm (mvvm code generator)
 
 ----
 You can add a game to calculate your skill (fake backend - random skill number) - you will able to add a partner or just an opponent and calculate yout skill basead on who win the game. After the calculation you will see that on main page. If you dont have internect connection you will not be able to calculate the skill but could check the last skill on main page.
