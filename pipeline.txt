@@ -1,0 +1,3 @@
+https://www.cliffordagius.co.uk/post/mauiwithazuredevops
+
+https://stackoverflow.com/questions/74242135/net-maui-set-version-in-azure-pipelines
