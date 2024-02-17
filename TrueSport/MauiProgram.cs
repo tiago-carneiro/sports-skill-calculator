@@ -31,7 +31,6 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<DashboardViewModel>();
         mauiAppBuilder.Services.AddTransient<GameViewModel>();
-        mauiAppBuilder.Services.AddTransient<FriendListViewModel>();
 
         return mauiAppBuilder;
     }
@@ -41,7 +40,6 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<AppShell>();
         mauiAppBuilder.Services.AddSingleton<DashboardPage>();
         mauiAppBuilder.Services.AddTransient<GamePage>();
-        mauiAppBuilder.Services.AddTransient<FriendListPage>();
 
         return mauiAppBuilder;
     }

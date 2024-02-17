@@ -1,12 +1,11 @@
 ﻿namespace TrueSport;
 
-//TODO create as page with searchbox
 public partial class FriendListPage
 {
-    public FriendListPage(FriendListViewModel viewModel)
+    public FriendListPage(IEnumerable<FriendModel> friends)
     {
         InitializeComponent();
-        BindingContext = viewModel;
+        collectionView.ItemsSource = friends;
     }
 
     void CollectionView_SelectionChanged(System.Object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)

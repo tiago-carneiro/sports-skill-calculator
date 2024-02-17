@@ -3,21 +3,22 @@
 public partial class GameViewModel : BaseViewModel
 {
     readonly IGameService _gameService;
+    readonly IFriendService _friendService;
 
     [ObservableProperty]
-    int _type;
-
-    [ObservableProperty]
-    int _winner;
+    int _type, _winner;
 
     [ObservableProperty]
     FriendModel _partner;
 
     public ObservableCollection<FriendModel> Opponents { get; }
 
-    public GameViewModel(IGameService gameService)
+    public GameViewModel(IGameService gameService,
+                        IFriendService friendService)
     {
         _gameService = gameService;
+        _friendService = friendService;
+
         Opponents = new ObservableCollection<FriendModel>();
     }
 
@@ -31,7 +32,7 @@ public partial class GameViewModel : BaseViewModel
         if (friend != null)
         {
             if (Opponents.Any(a => a.Id == friend.Id))
-                await ShowToastAsync($"{friend.Name} - already on the opponents list");
+                await ShowToastAsync($"{friend.Name} - already in the opponents list");
             else
                 Partner = friend;
         }
@@ -52,7 +53,7 @@ public partial class GameViewModel : BaseViewModel
                 case 1:
                     if (Opponents.Any(a => a.Id == friend.Id))
                     {
-                        await ShowToastAsync($"{friend.Name} - already on the list");
+                        await ShowToastAsync($"{friend.Name} - already in the list");
                         return;
                     }
 
@@ -88,8 +89,10 @@ public partial class GameViewModel : BaseViewModel
 
     async Task<FriendModel> SelectFriendAsync()
     {
-        var popup = Shell.Current.CurrentPage.Handler.MauiContext.Services.GetService<FriendListPage>();
-        var result = await Shell.Current.CurrentPage.ShowPopupAsync(popup);
+        var friends = await _friendService.GetAsync();
+
+        var result = await Shell.Current.CurrentPage.ShowPopupAsync(new FriendListPage(friends));
+
         if (result is FriendModel friend)
             return friend;
 

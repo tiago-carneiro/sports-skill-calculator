@@ -25,7 +25,6 @@ namespace TrueSport
             }
         }
 
-
         static void InitializeDatabase()
         {
             if (VersionTracking.IsFirstLaunchEver)
