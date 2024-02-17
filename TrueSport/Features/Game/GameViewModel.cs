@@ -31,7 +31,7 @@ public partial class GameViewModel : BaseViewModel
         if (friend != null)
         {
             if (Opponents.Any(a => a.Id == friend.Id))
-                await ShowMessageAsync($"{friend.Name} - already on the opponents list");
+                await ShowToastAsync($"{friend.Name} - already on the opponents list");
             else
                 Partner = friend;
         }
@@ -52,13 +52,13 @@ public partial class GameViewModel : BaseViewModel
                 case 1:
                     if (Opponents.Any(a => a.Id == friend.Id))
                     {
-                        await ShowMessageAsync($"{friend.Name} - already on the list");
+                        await ShowToastAsync($"{friend.Name} - already on the list");
                         return;
                     }
 
                     if(Partner.Id == friend.Id)
                     {
-                        await ShowMessageAsync($"{friend.Name} - is your partner");
+                        await ShowToastAsync($"{friend.Name} - is your partner");
                         return;
                     }
 
@@ -103,7 +103,7 @@ public partial class GameViewModel : BaseViewModel
             case 0:
                 if (Opponents.Count == 0)
                 {
-                    await ShowMessageAsync("You should select your opponent");
+                    await ShowToastAsync("You should select your opponent");
                     return false;
                 }
                 break;
@@ -111,13 +111,13 @@ public partial class GameViewModel : BaseViewModel
             case 1:
                 if (Partner == null)
                 {
-                    await ShowMessageAsync("You should select your partner");
+                    await ShowToastAsync("You should select your partner");
                     return false;
                 }
 
                 if (Opponents.Count != 2)
                 {
-                    await ShowMessageAsync("You should select 2 opponents");
+                    await ShowToastAsync("You should select 2 opponents");
                     return false;
                 }
                 break;

@@ -10,6 +10,6 @@ public abstract partial class BaseViewModel : ObservableObject, IQueryAttributab
 
     }
 
-    protected async Task ShowMessageAsync(string message)
+    protected async Task ShowToastAsync(string message)
         => await Toast.Make(message).Show();
 }
