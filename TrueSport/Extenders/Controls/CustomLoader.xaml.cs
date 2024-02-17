@@ -1,6 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-
-namespace TrueSport;
+﻿namespace TrueSport;
 
 public partial class CustomLoader : ContentView
 {

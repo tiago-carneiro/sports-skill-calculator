@@ -1,21 +1,16 @@
-﻿using System;
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿namespace TrueSport;
 
-namespace TrueSport
+public abstract partial class BaseViewModel : ObservableObject
 {
-    public abstract partial class BaseViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        public bool _isLoading;
+    [ObservableProperty]
+    public bool _isLoading;
 
-        public void SetLoading(bool value)
-            => IsLoading = value;
+    public void SetLoading(bool value)
+        => IsLoading = value;
 
-        public virtual Task InitializeAsync()
-            => Task.CompletedTask;
+    public virtual Task InitializeAsync()
+        => Task.CompletedTask;
 
-        protected async Task ShowMessageAsync(string message)
-            => await Toast.Make(message).Show();
-    }
+    protected async Task ShowMessageAsync(string message)
+        => await Toast.Make(message).Show();
 }

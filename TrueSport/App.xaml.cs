@@ -1,8 +1,7 @@
-﻿namespace TrueSport;
-using System.Net.Http;
-using System.Text;
-using Flurl.Http;
+﻿using System.Text;
 using Flurl.Http.Content;
+
+namespace TrueSport;
 
 public partial class App : Application
 {

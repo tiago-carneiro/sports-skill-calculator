@@ -1,8 +1,6 @@
-﻿using System;
-namespace TrueSport
+﻿namespace TrueSport;
+
+public static class ConstantsHelper
 {
-	public static class ConstantsHelper
-	{
-		public const string ApiUrl = "https://www.randomnumberapi.com";
-    }
+    public const string ApiUrl = "https://www.randomnumberapi.com";
 }
