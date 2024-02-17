@@ -10,8 +10,10 @@ public partial class DashboardViewModel : BaseViewModel
     public DashboardViewModel(IDashboardService dashboardService)
         => _dashboardService = dashboardService;
 
-    public async override Task InitializeAsync()
-        => SkillRating = await _dashboardService.GetSkillRatingAsync();
+    public override async void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        SkillRating = await _dashboardService.GetSkillRatingAsync();
+    }
     
     [RelayCommand]
     async Task CalculateSkill()

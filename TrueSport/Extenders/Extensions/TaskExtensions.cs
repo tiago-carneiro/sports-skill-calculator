@@ -5,7 +5,7 @@ internal static class TaskExtensions
     const string NoInternetConnection = "Something went wrong with the internet connection, please try again later.";
     const string GenericError = "Something went wrong, please try again later";
 
-    public static async Task<(bool Success, T Data)> Handle<T>(this Task<T> self, BaseViewModel vm = null)
+    public static async Task<(bool Success, T Data)> Handle<T>(this Task<T> self, BaseViewModel vm)
     {
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
@@ -13,7 +13,7 @@ internal static class TaskExtensions
             return (false, default(T));
         }
 
-        vm?.SetLoading(true);
+        vm.IsLoading = true;
 
         try
         {
@@ -27,7 +27,7 @@ internal static class TaskExtensions
         }
         finally
         {
-            vm?.SetLoading(false);
+            vm.IsLoading = false;
         }
 
         return (false, default(T));
@@ -41,7 +41,7 @@ internal static class TaskExtensions
             return (false);
         }
 
-        vm?.SetLoading(true);
+        vm.IsLoading = true;
 
         try
         {
@@ -55,7 +55,7 @@ internal static class TaskExtensions
         }
         finally
         {
-            vm?.SetLoading(false);
+            vm.IsLoading = false;
         }
 
         return false;

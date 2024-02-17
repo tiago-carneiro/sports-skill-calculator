@@ -1,15 +1,14 @@
 ﻿namespace TrueSport;
 
-public abstract partial class BaseViewModel : ObservableObject
+public abstract partial class BaseViewModel : ObservableObject, IQueryAttributable
 {
     [ObservableProperty]
-    public bool _isLoading;
+    bool _isLoading;
 
-    public void SetLoading(bool value)
-        => IsLoading = value;
+    public virtual void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
 
-    public virtual Task InitializeAsync()
-        => Task.CompletedTask;
+    }
 
     protected async Task ShowMessageAsync(string message)
         => await Toast.Make(message).Show();

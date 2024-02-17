@@ -10,6 +10,8 @@ public partial class FriendListViewModel : BaseViewModel
     public FriendListViewModel(IFriendService friendService)
         => _friendService = friendService;
 
-    public override async Task InitializeAsync()
-        => Friends = await _friendService.GetAsync();
+    public override async void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        Friends = await _friendService.GetAsync();
+    }
 }
