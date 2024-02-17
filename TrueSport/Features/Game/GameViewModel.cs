@@ -84,7 +84,7 @@ public partial class GameViewModel : BaseViewModel
 
         var success = await _gameService.CalculateSkillRatingAsync((GameWinner)Winner).Handle(this);
         if (success)            
-            await Shell.Current.GoToAsync("../");           
+            await Shell.Current.GoToAsync("../");
     }
 
     async Task<FriendModel> SelectFriendAsync()
