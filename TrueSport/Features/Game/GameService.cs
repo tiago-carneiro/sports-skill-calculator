@@ -16,7 +16,7 @@ public class GameService : IGameService
     public async Task CalculateSkillRatingAsync(GameWinner winner)
     {
         var query = ConstantsHelper.ApiUrl
-                     .AppendPathSegment("api/v1.0/randomredditnumber");
+                     .AppendPathSegment("api/v1.0/random");
 
         var collection = StoreService.Instance.GetCollection<UserModel>();
         var user = collection.Query().First();
